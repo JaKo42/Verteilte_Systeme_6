@@ -15,6 +15,9 @@ public class CallbackServer {
         String portNum, registryURL;
         try {
             System.out.println(
+                    "Enter the hostname:");
+            String hostname = br.readLine();
+            System.out.println(
                     "Enter the RMIregistry port number:");
             portNum = (br.readLine()).trim();
             int RMIPortNum = Integer.parseInt(portNum);
@@ -22,7 +25,7 @@ public class CallbackServer {
             CallbackServerImpl exportedObj =
                     new CallbackServerImpl();
             registryURL =
-                    "rmi://localhost:" + portNum + "/callback";
+                    "rmi://" + hostname + ":" + portNum + "/callback";
             Naming.rebind(registryURL, exportedObj);
             System.out.println("Callback Server ready.");
 
